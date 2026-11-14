@@ -1,0 +1,12 @@
+[Unit]
+Description=Magic Mouse gestures and smooth scrolling
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/python3 -I %h/projects/magic-mouse-gestures/magic_mouse_gestures.py
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=graphical-session.target
