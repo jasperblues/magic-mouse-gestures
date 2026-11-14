@@ -30,7 +30,7 @@ from gi.repository import Gio, GLib
 
 log = logging.getLogger("magic-mouse-gestures")
 
-APPLE_VENDOR = 0x004C
+APPLE_VENDORS = {0x004C, 0x05AC}  # Bluetooth SIG vendor ID, USB vendor ID
 MAGIC_MOUSE_PRODUCTS = {0x030D, 0x0269, 0x0323}  # Magic Mouse 1, 2, USB-C
 CLONE_SUFFIX = " (gestures)"
 
@@ -304,7 +304,7 @@ def find_magic_mouse():
             with open(path, "rb") as fd:
                 dev = libevdev.Device(fd)
                 ident = dev.id
-                if (ident["vendor"] == APPLE_VENDOR and ident["product"] in MAGIC_MOUSE_PRODUCTS
+                if (ident["vendor"] in APPLE_VENDORS and ident["product"] in MAGIC_MOUSE_PRODUCTS
                         and not dev.name.endswith(CLONE_SUFFIX)
                         and dev.has(libevdev.EV_ABS.ABS_MT_POSITION_X)):
                     return path
