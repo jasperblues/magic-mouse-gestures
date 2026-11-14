@@ -30,6 +30,9 @@ Yet the driver already reports every finger on the touch surface. All the data
 needed for a Mac-like experience is there — nothing was using it. This daemon
 does.
 
+The long-term fix belongs in libinput; see the upstream discussion:
+[libinput#1371](https://gitlab.freedesktop.org/libinput/libinput/-/work_items/1371).
+
 ## How it works
 
 - Grabs the Magic Mouse exclusively and re-emits pointer motion and buttons
